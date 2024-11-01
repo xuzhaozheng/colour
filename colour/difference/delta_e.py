@@ -19,8 +19,8 @@ References
 -   :cite:`InternationalTelecommunicationUnion2019` : International
     Telecommunication Union. (2019). Recommendation ITU-R BT.2124-0 -
     Objective metric for the assessment of the potential visibility of colour
-    differences in television (pp. 1-36). http://www.itu.int/dms_pubrec/itu-r/\
-rec/bt/R-REC-BT.470-6-199811-S!!PDF-E.pdf
+    differences in television (pp. 1-36).
+    https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.2124-0-201901-I!!PDF-E.pdf
 -   :cite:`Lindbloom2003c` : Lindbloom, B. (2003). Delta E (CIE 1976).
     Retrieved February 24, 2014, from
     http://brucelindbloom.com/Eqn_DeltaE_CIE76.html
