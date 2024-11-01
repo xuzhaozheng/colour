@@ -207,6 +207,7 @@ LiteralChromaticAdaptationTransform = Literal[
     "Von Kries",
     "XYZ Scaling",
 ]
+
 LiteralColourspaceModel = Literal[
     "CAM02LCD",
     "CAM02SCD",
@@ -245,6 +246,7 @@ LiteralColourspaceModel = Literal[
     "hdr-CIELAB",
     "hdr-IPT",
 ]
+
 LiteralRGBColourspace = Literal[
     "ACES2065-1",
     "ACEScc",
@@ -315,6 +317,7 @@ LiteralRGBColourspace = Literal[
     "prophoto",
     "sRGB",
 ]
+
 LiteralLogEncoding = Literal[
     "ACEScc",
     "ACEScct",
@@ -348,6 +351,7 @@ LiteralLogEncoding = Literal[
     "V-Log",
     "ViperLog",
 ]
+
 LiteralLogDecoding = Literal[
     "ACEScc",
     "ACEScct",
@@ -381,6 +385,7 @@ LiteralLogDecoding = Literal[
     "V-Log",
     "ViperLog",
 ]
+
 LiteralOETF = Literal[
     "ARIB STD-B67",
     "Blackmagic Film Generation 5",
@@ -395,6 +400,7 @@ LiteralOETF = Literal[
     "ITU-T H.273 Log Sqrt",
     "SMPTE 240M",
 ]
+
 LiteralOETFInverse = Literal[
     "ARIB STD-B67",
     "Blackmagic Film Generation 5",
@@ -408,6 +414,7 @@ LiteralOETFInverse = Literal[
     "ITU-T H.273 Log",
     "ITU-T H.273 Log Sqrt",
 ]
+
 LiteralEOTF = Literal[
     "DCDM",
     "DICOM GSDF",
@@ -419,6 +426,7 @@ LiteralEOTF = Literal[
     "ST 2084",
     "sRGB",
 ]
+
 LiteralEOTFInverse = Literal[
     "DCDM",
     "DICOM GSDF",
@@ -429,6 +437,7 @@ LiteralEOTFInverse = Literal[
     "ST 2084",
     "sRGB",
 ]
+
 LiteralCCTFEncoding = Literal[
     "ACEScc",
     "ACEScct",
@@ -486,6 +495,7 @@ LiteralCCTFEncoding = Literal[
     "ViperLog",
     "sRGB",
 ]
+
 LiteralCCTFDecoding = Literal[
     "ACEScc",
     "ACEScct",
@@ -543,8 +553,11 @@ LiteralCCTFDecoding = Literal[
     "ViperLog",
     "sRGB",
 ]
+
 LiteralOOTF = Literal["ITU-R BT.2100 HLG", "ITU-R BT.2100 PQ"]
+
 LiteralOOTFInverse = Literal["ITU-R BT.2100 HLG", "ITU-R BT.2100 PQ"]
+
 LiteralLUTReadMethod = Literal[
     "Cinespace",
     "Iridas Cube",
@@ -553,6 +566,7 @@ LiteralLUTReadMethod = Literal[
     "Sony SPI3D",
     "Sony SPImtx",
 ]
+
 LiteralLUTWriteMethod = Literal[
     "Cinespace",
     "Iridas Cube",
@@ -561,6 +575,26 @@ LiteralLUTWriteMethod = Literal[
     "Sony SPI3D",
     "Sony SPImtx",
 ]
+
+LiteralDeltaEMethod = Literal[
+    "CAM02-LCD",
+    "CAM02-SCD",
+    "CAM02-UCS",
+    "CAM16-LCD",
+    "CAM16-SCD",
+    "CAM16-UCS",
+    "CIE 1976",
+    "CIE 1994",
+    "CIE 2000",
+    "CMC",
+    "DIN99",
+    "HyAB",
+    "ITP",
+    "cie1976",
+    "cie1994",
+    "cie2000",
+]
+
 LiteralFontScaling = Literal[
     "xx-small",
     "x-small",
