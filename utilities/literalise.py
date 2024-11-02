@@ -59,20 +59,37 @@ def literalise(path_module_hints: str = PATH_MODULE_HINTS):
             # LITERALISE::BEGIN
             LiteralChromaticAdaptationTransform = \
                 Literal{sorted(colour.CHROMATIC_ADAPTATION_TRANSFORMS)}
+
             LiteralColourspaceModel = Literal{sorted(colour.COLOURSPACE_MODELS)}
+
             LiteralRGBColourspace = Literal{sorted(colour.RGB_COLOURSPACES.keys())}
+
             LiteralLogEncoding = Literal{sorted(colour.LOG_ENCODINGS)}
+
             LiteralLogDecoding = Literal{sorted(colour.LOG_DECODINGS)}
+
             LiteralOETF = Literal{sorted(colour.OETFS)}
+
             LiteralOETFInverse = Literal{sorted(colour.OETF_INVERSES)}
+
             LiteralEOTF = Literal{sorted(colour.EOTFS)}
+
             LiteralEOTFInverse = Literal{sorted(colour.EOTF_INVERSES)}
+
             LiteralCCTFEncoding = Literal{sorted(colour.CCTF_ENCODINGS)}
+
             LiteralCCTFDecoding = Literal{sorted(colour.CCTF_DECODINGS)}
+
             LiteralOOTF = Literal{sorted(colour.OOTFS)}
+
             LiteralOOTFInverse = Literal{sorted(colour.OOTF_INVERSES)}
+
             LiteralLUTReadMethod = Literal{sorted(colour.io.LUT_READ_METHODS)}
+
             LiteralLUTWriteMethod = Literal{sorted(colour.io.LUT_WRITE_METHODS)}
+
+            LiteralDeltaEMethod = Literal{sorted(colour.DELTA_E_METHODS)}
+
             LiteralFontScaling = Literal{font_scalings}
             # LITERALISE::END
             """

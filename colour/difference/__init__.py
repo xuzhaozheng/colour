@@ -34,7 +34,7 @@ Melgosa_CIEDE2000_Workshop-July4.pdf
 
 from __future__ import annotations
 
-from colour.hints import Any, ArrayLike, NDArrayFloat, Literal
+from colour.hints import Any, ArrayLike, NDArrayFloat, LiteralDeltaEMethod
 from colour.utilities import (
     CanonicalMapping,
     filter_kwargs,
@@ -127,24 +127,7 @@ DELTA_E_METHODS["cie2000"] = DELTA_E_METHODS["CIE 2000"]
 def delta_E(
     a: ArrayLike,
     b: ArrayLike,
-    method: (
-        Literal[
-            "CIE 1976",
-            "CIE 1994",
-            "CIE 2000",
-            "CMC",
-            "ITP",
-            "CAM02-LCD",
-            "CAM02-SCD",
-            "CAM02-UCS",
-            "CAM16-LCD",
-            "CAM16-SCD",
-            "CAM16-UCS",
-            "DIN99",
-            "HyAB",
-        ]
-        | str
-    ) = "CIE 2000",
+    method: LiteralDeltaEMethod | str = "CIE 2000",
     **kwargs: Any,
 ) -> NDArrayFloat:
     """

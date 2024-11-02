@@ -2232,13 +2232,7 @@ def tsplit(
 
     a = as_array(a, dtype)
 
-    if a.ndim <= 2:
-        return np.transpose(a)
-
-    return np.transpose(
-        a,
-        np.concatenate([[a.ndim - 1], np.arange(0, a.ndim - 1)]),
-    )
+    return np.array([a[..., x] for x in range(a.shape[-1])])
 
 
 def row_as_diagonal(a: ArrayLike) -> NDArray:

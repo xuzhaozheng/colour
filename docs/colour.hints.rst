@@ -70,7 +70,5 @@ Annotation Type Hints
     LiteralOOTFInverse
     LiteralLUTReadMethod
     LiteralLUTWriteMethod
-
-
-
+    LiteralDeltaEMethod
     LiteralFontScaling
