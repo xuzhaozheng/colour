@@ -570,8 +570,11 @@ def delta_E_ITP(ICtCp_1: ArrayLike, ICtCp_2: ArrayLike) -> NDArrayFloat:
 def delta_E_HyAB(Lab_1: ArrayLike, Lab_2: ArrayLike) -> NDArrayFloat:
     """
     Return the difference between two *CIE L\\*a\\*b\\** colourspace arrays
-    This metric is intended for large color differences,
-    on the order of 10 CIELAB units or greater
+    using a combination of a Euclidean metric in hue and chroma with a
+    city-block metric to incorporate lightness differences.
+
+    This metric is intended for large colour differences, on the order of 10
+    CIE L\\*a\\*b\\** units or greater.
 
     Parameters
     ----------
