@@ -1,6 +1,9 @@
 """
 References
 ----------
+-   :cite:`Abasi2020a` : Abasi, S., Amani Tehran, M., & Fairchild, M. D. (2020).
+    Distance metrics for very large color differences. Color Research &
+    Application, 45(2), 208-223. doi:10.1002/col.22451
 -   :cite:`ASTMInternational2007` : ASTM International. (2007). ASTM D2244-07 -
     Standard Practice for Calculation of Color Tolerances and Color Differences
     from Instrumentally Measured Color Coordinates: Vol. i (pp. 1-10).
@@ -109,9 +112,9 @@ Supported :math:`\\Delta E_{ab}` computation methods.
 
 References
 ----------
-:cite:`ASTMInternational2007`, :cite:`Li2017`, :cite:`Lindbloom2003c`,
-:cite:`Lindbloom2011a`, :cite:`Lindbloom2009f`, :cite:`Luo2006b`,
-:cite:`Melgosa2013b`, :cite:`Wikipedia2008b`
+:cite:`ASTMInternational2007`, :cite:`Abasi2020a`, :cite:`Li2017`,
+:cite:`Lindbloom2003c`, :cite:`Lindbloom2011a`, :cite:`Lindbloom2009f`,
+:cite:`Luo2006b`, :cite:`Melgosa2013b`, :cite:`Wikipedia2008b`
 
 Aliases:
 

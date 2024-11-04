@@ -16,6 +16,9 @@ The following attributes and methods are available:
 
 References
 ----------
+-   :cite:`Abasi2020a` : Abasi, S., Amani Tehran, M., & Fairchild, M. D. (2020).
+    Distance metrics for very large color differences. Color Research &
+    Application, 45(2), 208-223. doi:10.1002/col.22451
 -   :cite:`InternationalTelecommunicationUnion2019` : International
     Telecommunication Union. (2019). Recommendation ITU-R BT.2124-0 -
     Objective metric for the assessment of the potential visibility of colour
@@ -38,10 +41,6 @@ Melgosa_CIEDE2000_Workshop-July4.pdf
     30(1), 21-30. doi:10.1002/col.20070
 -   :cite:`Mokrzycki2011` : Mokrzycki, W., & Tatol, M. (2011). Color difference
     Delta E - A survey. Machine Graphics and Vision, 20, 383-411.
--   :cite:`Abasi2020` :  Abasi S, Amani Tehran M, Fairchild MD.
-    Distance metrics for very large color differences.
-    Color Res Appl. 2020; 45: 208-223. https://doi.org/10.1002/col.22451
-    Retrieved October 23, 2024, from http://markfairchild.org/PDFs/PAP40.pdf
 """
 
 from __future__ import annotations
@@ -606,7 +605,7 @@ def delta_E_HyAB(Lab_1: ArrayLike, Lab_2: ArrayLike) -> NDArrayFloat:
 
     References
     ----------
-    :cite:`Abasi2020`
+    :cite:`Abasi2020a`
 
     Examples
     --------
