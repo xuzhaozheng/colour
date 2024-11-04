@@ -138,10 +138,10 @@ def delta_E_CIE1976(Lab_1: ArrayLike, Lab_2: ArrayLike) -> NDArrayFloat:
 
     Examples
     --------
-    >>> Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E_CIE1976(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    451.7133019...
+    2.7335037...
     """
 
     d_E = euclidean_distance(to_domain_100(Lab_1), to_domain_100(Lab_2))
@@ -201,12 +201,12 @@ def delta_E_CIE1994(
 
     Examples
     --------
-    >>> Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E_CIE1994(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    83.7792255...
+    1.6711191...
     >>> delta_E_CIE1994(Lab_1, Lab_2, textiles=True)  # doctest: +ELLIPSIS
-    88.3355530...
+    0.8404677...
     """
 
     L_1, a_1, b_1 = tsplit(to_domain_100(Lab_1))
@@ -304,15 +304,12 @@ def delta_E_CIE2000(
 
     Examples
     --------
-    >>> Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E_CIE2000(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    94.0356490...
-    >>> Lab_2 = np.array([50.00000000, 426.67945353, 72.39590835])
-    >>> delta_E_CIE2000(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    100.8779470...
+    1.6709303...
     >>> delta_E_CIE2000(Lab_1, Lab_2, textiles=True)  # doctest: +ELLIPSIS
-    95.7920535...
+    0.8412338...
     """
 
     L_1, a_1, b_1 = tsplit(to_domain_100(Lab_1))
@@ -479,10 +476,10 @@ def delta_E_CMC(
 
     Examples
     --------
-    >>> Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E_CMC(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    172.7047712...
+    0.8996999...
     """
 
     L_1, a_1, b_1 = tsplit(to_domain_100(Lab_1))
@@ -612,12 +609,14 @@ def delta_E_HyAB(Lab_1: ArrayLike, Lab_2: ArrayLike) -> NDArrayFloat:
 
     Examples
     --------
-    >>> Lab_1 = np.array([25.0, 8.0, -14.0])
-    >>> Lab_2 = np.array([75.0, -35.0, 16.0])
+    >>> Lab_1 = np.array([39.91531343, 51.16658481, 146.12933781])
+    >>> Lab_2 = np.array([53.12207516, -39.92365056, 249.54831278])
     >>> delta_E_HyAB(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    102.4309069...
+    151.0215481...
     """
+
     dLab = to_domain_100(Lab_1) - to_domain_100(Lab_2)
     dL, da, db = tsplit(dLab)
-    HyAB = np.abs(dL) + np.sqrt(da**2 + db**2)
+    HyAB = np.abs(dL) + np.hypot(da, db)
+
     return as_float(HyAB)
