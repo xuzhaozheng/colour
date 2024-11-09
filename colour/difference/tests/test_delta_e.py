@@ -57,8 +57,8 @@ class TestDelta_E_CIE1976:
     def test_delta_E_CIE1976(self):
         """Test :func:`colour.difference.delta_e.delta_E_CIE1976` definition."""
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
         Lab_1 = np.reshape(np.tile(Lab_1, (6, 1)), (2, 3, 3))
         Lab_2 = np.reshape(np.tile(Lab_2, (6, 1)), (2, 3, 3))
 
@@ -80,8 +80,8 @@ class TestDelta_E_CIE1976:
         domain and range scale support.
         """
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
 
         d_r = (("reference", 1), ("1", 0.01), ("100", 1))
         for scale, factor in d_r:
@@ -111,6 +111,15 @@ class TestDelta_E_CIE1994:
 
         np.testing.assert_allclose(
             delta_E_CIE1994(
+                np.array([48.99183622, -0.10561667, 400.65619925]),
+                np.array([50.65907324, -0.11671910, 402.82235718]),
+            ),
+            1.671119130541200,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
+        )
+
+        np.testing.assert_allclose(
+            delta_E_CIE1994(
                 np.array([100.00000000, 21.57210357, 272.22819350]),
                 np.array([100.00000000, 426.67945353, 72.39590835]),
             ),
@@ -124,15 +133,6 @@ class TestDelta_E_CIE1994:
                 np.array([100.00000000, 74.05216981, 276.45318193]),
             ),
             10.053931954553839,
-            atol=TOLERANCE_ABSOLUTE_TESTS,
-        )
-
-        np.testing.assert_allclose(
-            delta_E_CIE1994(
-                np.array([100.00000000, 21.57210357, 272.22819350]),
-                np.array([100.00000000, 8.32281957, -73.58297716]),
-            ),
-            57.535453706667425,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
@@ -172,8 +172,8 @@ class TestDelta_E_CIE1994:
         n-dimensional arrays support.
         """
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
         delta_E = delta_E_CIE1994(Lab_1, Lab_2)
 
         Lab_1 = np.tile(Lab_1, (6, 1))
@@ -200,8 +200,8 @@ class TestDelta_E_CIE1994:
         domain and range scale support.
         """
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
         delta_E = delta_E_CIE1994(Lab_1, Lab_2)
 
         d_r = (("reference", 1), ("1", 0.01), ("100", 1))
@@ -236,6 +236,15 @@ class TestDelta_E_CIE2000:
 
         np.testing.assert_allclose(
             delta_E_CIE2000(
+                np.array([48.99183622, -0.10561667, 400.65619925]),
+                np.array([50.65907324, -0.11671910, 402.82235718]),
+            ),
+            1.670930327213592,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
+        )
+
+        np.testing.assert_allclose(
+            delta_E_CIE2000(
                 np.array([100.00000000, 21.57210357, 272.22819350]),
                 np.array([100.00000000, 426.67945353, 72.39590835]),
             ),
@@ -249,15 +258,6 @@ class TestDelta_E_CIE2000:
                 np.array([100.00000000, 74.05216981, 276.45318193]),
             ),
             14.87906419,
-            atol=TOLERANCE_ABSOLUTE_TESTS,
-        )
-
-        np.testing.assert_allclose(
-            delta_E_CIE2000(
-                np.array([100.00000000, 21.57210357, 272.22819350]),
-                np.array([100.00000000, 8.32281957, -73.58297716]),
-            ),
-            68.23111251,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
@@ -297,8 +297,8 @@ class TestDelta_E_CIE2000:
         n-dimensional arrays support.
         """
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
         delta_E = delta_E_CIE2000(Lab_1, Lab_2)
 
         Lab_1 = np.tile(Lab_1, (6, 1))
@@ -325,8 +325,8 @@ class TestDelta_E_CIE2000:
         domain and range scale support.
         """
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
         delta_E = delta_E_CIE2000(Lab_1, Lab_2)
 
         d_r = (("reference", 1), ("1", 0.01), ("100", 1))
@@ -528,6 +528,15 @@ class TestDelta_E_CMC:
 
         np.testing.assert_allclose(
             delta_E_CMC(
+                np.array([48.99183622, -0.10561667, 400.65619925]),
+                np.array([50.65907324, -0.11671910, 402.82235718]),
+            ),
+            0.899699975683419,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
+        )
+
+        np.testing.assert_allclose(
+            delta_E_CMC(
                 np.array([100.00000000, 21.57210357, 272.22819350]),
                 np.array([100.00000000, 426.67945353, 72.39590835]),
             ),
@@ -541,15 +550,6 @@ class TestDelta_E_CMC:
                 np.array([100.00000000, 74.05216981, 276.45318193]),
             ),
             20.59732717,
-            atol=TOLERANCE_ABSOLUTE_TESTS,
-        )
-
-        np.testing.assert_allclose(
-            delta_E_CMC(
-                np.array([100.00000000, 21.57210357, 272.22819350]),
-                np.array([100.00000000, 8.32281957, -73.58297716]),
-            ),
-            121.71841479,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
@@ -589,8 +589,8 @@ class TestDelta_E_CMC:
         n-dimensional arrays support.
         """
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
         delta_E = delta_E_CMC(Lab_1, Lab_2)
 
         Lab_1 = np.tile(Lab_1, (6, 1))
@@ -613,8 +613,8 @@ class TestDelta_E_CMC:
         domain and range scale support.
         """
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
         delta_E = delta_E_CMC(Lab_1, Lab_2)
 
         d_r = (("reference", 1), ("1", 0.01), ("100", 1))
@@ -737,6 +737,49 @@ class TestDelta_E_ITP:
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
+    def test_n_dimensional_delta_E_ITP(self):
+        """
+        Test :func:`colour.difference.delta_e.delta_E_ITP` definition
+        n-dimensional arrays support.
+        """
+
+        ICtCp_1 = np.array([0.4885468072, -0.04739350675, 0.07475401302])
+        ICtCp_2 = np.array([0.4899203231, -0.04567508203, 0.07361341775])
+        delta_E = delta_E_ITP(ICtCp_1, ICtCp_2)
+
+        ICtCp_1 = np.tile(ICtCp_1, (6, 1))
+        ICtCp_2 = np.tile(ICtCp_2, (6, 1))
+        delta_E = np.tile(delta_E, 6)
+        np.testing.assert_allclose(
+            delta_E_ITP(ICtCp_1, ICtCp_2), delta_E, atol=TOLERANCE_ABSOLUTE_TESTS
+        )
+
+        ICtCp_1 = np.reshape(ICtCp_1, (2, 3, 3))
+        ICtCp_2 = np.reshape(ICtCp_2, (2, 3, 3))
+        delta_E = np.reshape(delta_E, (2, 3))
+        np.testing.assert_allclose(
+            delta_E_ITP(ICtCp_1, ICtCp_2), delta_E, atol=TOLERANCE_ABSOLUTE_TESTS
+        )
+
+    def test_domain_range_scale_delta_E_ITP(self):
+        """
+        Test :func:`colour.difference.delta_e.delta_E_ITP` definition domain
+        and range scale support.
+        """
+
+        ICtCp_1 = np.array([0.4885468072, -0.04739350675, 0.07475401302])
+        ICtCp_2 = np.array([0.4899203231, -0.04567508203, 0.07361341775])
+        delta_E = delta_E_ITP(ICtCp_1, ICtCp_2)
+
+        d_r = (("reference", 1), ("1", 1), ("100", 1))
+        for scale, factor in d_r:
+            with domain_range_scale(scale):
+                np.testing.assert_allclose(
+                    delta_E_ITP(ICtCp_1 * factor, ICtCp_2 * factor),
+                    delta_E,
+                    atol=TOLERANCE_ABSOLUTE_TESTS,
+                )
+
     @ignore_numpy_errors
     def test_nan_delta_E_ITP(self):
         """
@@ -757,21 +800,31 @@ class TestDelta_E_HyAB:
 
     def test_delta_E_HyAB(self):
         """Test :func:`colour.difference.delta_e.delta_E_HyAB` definition."""
+
         np.testing.assert_allclose(
             delta_E_HyAB(
-                np.array([62.9, 28.3, 95.1]),
-                np.array([15.3, 3.8, 29.3]),
+                np.array([39.91531343, 51.16658481, 146.12933781]),
+                np.array([53.12207516, -39.92365056, 249.54831278]),
             ),
-            117.81317540177199,
+            151.021548177635900,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
         np.testing.assert_allclose(
             delta_E_HyAB(
-                np.array([96.7, 43.5, 13.5]),
-                np.array([11.6, 63.5, 71.6]),
+                np.array([39.91531343, 51.16658481, 146.12933781]),
+                np.array([28.52234779, 19.46628874, 472.06042624]),
             ),
-            146.54599254630037,
+            338.862022462305200,
+            atol=TOLERANCE_ABSOLUTE_TESTS,
+        )
+
+        np.testing.assert_allclose(
+            delta_E_HyAB(
+                np.array([48.99183622, -0.10561667, 400.65619925]),
+                np.array([50.65907324, -0.11671910, 402.82235718]),
+            ),
+            3.833423402021121,
             atol=TOLERANCE_ABSOLUTE_TESTS,
         )
 
@@ -780,8 +833,9 @@ class TestDelta_E_HyAB:
         Test :func:`colour.difference.delta_e.delta_E_HyAB` definition
         n-dimensional arrays support.
         """
-        Lab_1 = np.array([62.9, 28.3, 95.1])
-        Lab_2 = np.array([15.3, 3.8, 29.3])
+
+        Lab_1 = (np.array([39.91531343, 51.16658481, 146.12933781]),)
+        Lab_2 = (np.array([53.12207516, -39.92365056, 249.54831278]),)
         delta_E = delta_E_HyAB(Lab_1, Lab_2)
 
         Lab_1 = np.tile(Lab_1, (6, 1))
@@ -808,8 +862,8 @@ class TestDelta_E_HyAB:
         domain and range scale support.
         """
 
-        Lab_1 = np.array([62.9, 28.3, 95.1])
-        Lab_2 = np.array([15.3, 3.8, 29.3])
+        Lab_1 = np.array([39.91531343, 51.16658481, 146.12933781])
+        Lab_2 = np.array([53.12207516, -39.92365056, 249.54831278])
         delta_E = delta_E_HyAB(Lab_1, Lab_2)
 
         d_r = (("reference", 1), ("1", 0.01), ("100", 1))

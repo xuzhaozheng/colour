@@ -1,6 +1,9 @@
 """
 References
 ----------
+-   :cite:`Abasi2020a` : Abasi, S., Amani Tehran, M., & Fairchild, M. D. (2020).
+    Distance metrics for very large color differences. Color Research &
+    Application, 45(2), 208-223. doi:10.1002/col.22451
 -   :cite:`ASTMInternational2007` : ASTM International. (2007). ASTM D2244-07 -
     Standard Practice for Calculation of Color Tolerances and Color Differences
     from Instrumentally Measured Color Coordinates: Vol. i (pp. 1-10).
@@ -109,9 +112,9 @@ Supported :math:`\\Delta E_{ab}` computation methods.
 
 References
 ----------
-:cite:`ASTMInternational2007`, :cite:`Li2017`, :cite:`Lindbloom2003c`,
-:cite:`Lindbloom2011a`, :cite:`Lindbloom2009f`, :cite:`Luo2006b`,
-:cite:`Melgosa2013b`, :cite:`Wikipedia2008b`
+:cite:`ASTMInternational2007`, :cite:`Abasi2020a`, :cite:`Li2017`,
+:cite:`Lindbloom2003c`, :cite:`Lindbloom2011a`, :cite:`Lindbloom2009f`,
+:cite:`Luo2006b`, :cite:`Melgosa2013b`, :cite:`Wikipedia2008b`
 
 Aliases:
 
@@ -178,21 +181,21 @@ def delta_E(
     Examples
     --------
     >>> import numpy as np
-    >>> a = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> b = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> a = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> b = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E(a, b)  # doctest: +ELLIPSIS
-    94.0356490...
+    1.6709303...
     >>> delta_E(a, b, method="CIE 2000")  # doctest: +ELLIPSIS
-    94.0356490...
+    1.6709303...
     >>> delta_E(a, b, method="CIE 1976")  # doctest: +ELLIPSIS
-    451.7133019...
+    2.7335037...
     >>> delta_E(a, b, method="CIE 1994")  # doctest: +ELLIPSIS
-    83.7792255...
-    >>> delta_E(a, b, method="CIE 1994", textiles=False)
+    1.6711191...
+    >>> delta_E(a, b, method="CIE 1994", textiles=True)
     ... # doctest: +ELLIPSIS
-    83.7792255...
+    0.8404677...
     >>> delta_E(a, b, method="DIN99")  # doctest: +ELLIPSIS
-    66.1119282...
+    1.5591089...
     >>> a = np.array([0.4885468072, -0.04739350675, 0.07475401302])
     >>> b = np.array([0.4899203231, -0.04567508203, 0.07361341775])
     >>> delta_E(a, b, method="ITP")  # doctest: +ELLIPSIS
@@ -203,6 +206,10 @@ def delta_E(
     0.0001034...
     >>> delta_E(a, b, method="CAM16-LCD")  # doctest: +ELLIPSIS
     0.0001034...
+    >>> a = np.array([39.91531343, 51.16658481, 146.12933781])
+    >>> b = np.array([53.12207516, -39.92365056, 249.54831278])
+    >>> delta_E(a, b, method="HyAB")  # doctest: +ELLIPSIS
+    151.0215481...
     """
 
     method = validate_method(method, tuple(DELTA_E_METHODS))

@@ -28,8 +28,8 @@ class TestDelta_E:
         scale support.
         """
 
-        Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-        Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+        Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+        Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
 
         m = ("CIE 1976", "CIE 1994", "CIE 2000", "CMC", "DIN99")
         v = [delta_E(Lab_1, Lab_2, method) for method in m]

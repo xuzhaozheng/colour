@@ -16,6 +16,9 @@ The following attributes and methods are available:
 
 References
 ----------
+-   :cite:`Abasi2020a` : Abasi, S., Amani Tehran, M., & Fairchild, M. D. (2020).
+    Distance metrics for very large color differences. Color Research &
+    Application, 45(2), 208-223. doi:10.1002/col.22451
 -   :cite:`InternationalTelecommunicationUnion2019` : International
     Telecommunication Union. (2019). Recommendation ITU-R BT.2124-0 -
     Objective metric for the assessment of the potential visibility of colour
@@ -38,10 +41,6 @@ Melgosa_CIEDE2000_Workshop-July4.pdf
     30(1), 21-30. doi:10.1002/col.20070
 -   :cite:`Mokrzycki2011` : Mokrzycki, W., & Tatol, M. (2011). Color difference
     Delta E - A survey. Machine Graphics and Vision, 20, 383-411.
--   :cite:`Abasi2020` :  Abasi S, Amani Tehran M, Fairchild MD.
-    Distance metrics for very large color differences.
-    Color Res Appl. 2020; 45: 208-223. https://doi.org/10.1002/col.22451
-    Retrieved October 23, 2024, from http://markfairchild.org/PDFs/PAP40.pdf
 """
 
 from __future__ import annotations
@@ -139,10 +138,10 @@ def delta_E_CIE1976(Lab_1: ArrayLike, Lab_2: ArrayLike) -> NDArrayFloat:
 
     Examples
     --------
-    >>> Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E_CIE1976(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    451.7133019...
+    2.7335037...
     """
 
     d_E = euclidean_distance(to_domain_100(Lab_1), to_domain_100(Lab_2))
@@ -202,12 +201,12 @@ def delta_E_CIE1994(
 
     Examples
     --------
-    >>> Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E_CIE1994(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    83.7792255...
+    1.6711191...
     >>> delta_E_CIE1994(Lab_1, Lab_2, textiles=True)  # doctest: +ELLIPSIS
-    88.3355530...
+    0.8404677...
     """
 
     L_1, a_1, b_1 = tsplit(to_domain_100(Lab_1))
@@ -305,15 +304,12 @@ def delta_E_CIE2000(
 
     Examples
     --------
-    >>> Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E_CIE2000(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    94.0356490...
-    >>> Lab_2 = np.array([50.00000000, 426.67945353, 72.39590835])
-    >>> delta_E_CIE2000(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    100.8779470...
+    1.6709303...
     >>> delta_E_CIE2000(Lab_1, Lab_2, textiles=True)  # doctest: +ELLIPSIS
-    95.7920535...
+    0.8412338...
     """
 
     L_1, a_1, b_1 = tsplit(to_domain_100(Lab_1))
@@ -480,10 +476,10 @@ def delta_E_CMC(
 
     Examples
     --------
-    >>> Lab_1 = np.array([100.00000000, 21.57210357, 272.22819350])
-    >>> Lab_2 = np.array([100.00000000, 426.67945353, 72.39590835])
+    >>> Lab_1 = np.array([48.99183622, -0.10561667, 400.65619925])
+    >>> Lab_2 = np.array([50.65907324, -0.11671910, 402.82235718])
     >>> delta_E_CMC(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    172.7047712...
+    0.8996999...
     """
 
     L_1, a_1, b_1 = tsplit(to_domain_100(Lab_1))
@@ -571,8 +567,11 @@ def delta_E_ITP(ICtCp_1: ArrayLike, ICtCp_2: ArrayLike) -> NDArrayFloat:
 def delta_E_HyAB(Lab_1: ArrayLike, Lab_2: ArrayLike) -> NDArrayFloat:
     """
     Return the difference between two *CIE L\\*a\\*b\\** colourspace arrays
-    This metric is intended for large color differences,
-    on the order of 10 CIELAB units or greater
+    using a combination of a Euclidean metric in hue and chroma with a
+    city-block metric to incorporate lightness differences.
+
+    This metric is intended for large colour differences, on the order of 10
+    CIE L\\*a\\*b\\** units or greater.
 
     Parameters
     ----------
@@ -606,16 +605,18 @@ def delta_E_HyAB(Lab_1: ArrayLike, Lab_2: ArrayLike) -> NDArrayFloat:
 
     References
     ----------
-    :cite:`Abasi2020`
+    :cite:`Abasi2020a`
 
     Examples
     --------
-    >>> Lab_1 = np.array([25.0, 8.0, -14.0])
-    >>> Lab_2 = np.array([75.0, -35.0, 16.0])
+    >>> Lab_1 = np.array([39.91531343, 51.16658481, 146.12933781])
+    >>> Lab_2 = np.array([53.12207516, -39.92365056, 249.54831278])
     >>> delta_E_HyAB(Lab_1, Lab_2)  # doctest: +ELLIPSIS
-    102.4309069...
+    151.0215481...
     """
+
     dLab = to_domain_100(Lab_1) - to_domain_100(Lab_2)
     dL, da, db = tsplit(dLab)
-    HyAB = np.abs(dL) + np.sqrt(da**2 + db**2)
+    HyAB = np.abs(dL) + np.hypot(da, db)
+
     return as_float(HyAB)
