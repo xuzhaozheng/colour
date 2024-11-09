@@ -1409,6 +1409,33 @@ class TestTstack(unittest.TestCase):
             ),
         )
 
+        # Ensuring that contiguity is maintained.
+        a = np.array([0, 1, 2], dtype=DTYPE_FLOAT_DEFAULT)
+        b = tstack([a, a, a])
+        assert b.flags.contiguous
+
+        # Ensuring that independence is maintained.
+        a *= 2
+        np.testing.assert_array_equal(
+            b,
+            np.array(
+                [
+                    [0, 0, 0],
+                    [1, 1, 1],
+                    [2, 2, 2],
+                ],
+            ),
+        )
+
+        a = np.array([0, 1, 2], dtype=DTYPE_FLOAT_DEFAULT)
+        b = tstack([a, a, a])
+
+        b[1] *= 2
+        np.testing.assert_array_equal(
+            a,
+            np.array([0, 1, 2]),
+        )
+
 
 class TestTsplit(unittest.TestCase):
     """
@@ -1480,6 +1507,53 @@ class TestTsplit(unittest.TestCase):
                     [[[0, 1, 2], [3, 4, 5]]],
                     [[[0, 1, 2], [3, 4, 5]]],
                     [[[0, 1, 2], [3, 4, 5]]],
+                ]
+            ),
+        )
+
+        # Ensuring that contiguity is maintained.
+        a = np.array(
+            [
+                [0, 0, 0],
+                [1, 1, 1],
+                [2, 2, 2],
+            ],
+            dtype=DTYPE_FLOAT_DEFAULT,
+        )
+        b = tsplit(a)
+        assert b.flags.contiguous
+
+        # Ensuring that independence is maintained.
+        a *= 2
+        np.testing.assert_array_equal(
+            b,
+            np.array(
+                [
+                    [0, 1, 2],
+                    [0, 1, 2],
+                    [0, 1, 2],
+                ]
+            ),
+        )
+
+        a = np.array(
+            [
+                [0, 0, 0],
+                [1, 1, 1],
+                [2, 2, 2],
+            ],
+            dtype=DTYPE_FLOAT_DEFAULT,
+        )
+        b = tsplit(a)
+
+        b[1] *= 2
+        np.testing.assert_array_equal(
+            a,
+            np.array(
+                [
+                    [0, 0, 0],
+                    [1, 1, 1],
+                    [2, 2, 2],
                 ]
             ),
         )
