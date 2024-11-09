@@ -2167,10 +2167,7 @@ def tstack(
 
     a = as_array(a, dtype)
 
-    if a.ndim <= 2:
-        return np.transpose(a)
-
-    return np.concatenate([x[..., None] for x in a], axis=-1)
+    return np.concatenate([x[..., np.newaxis] for x in a], axis=-1)
 
 
 def tsplit(
