@@ -13,6 +13,7 @@ The following attributes and methods are available:
 -   :func:`colour.difference.delta_E_CMC`
 -   :func:`colour.difference.delta_E_ITP`
 -   :func:`colour.difference.delta_E_HyAB`
+-   :func:`colour.difference.delta_E_HyCH`
 
 References
 ----------
@@ -79,6 +80,7 @@ __all__ = [
     "delta_E_CMC",
     "delta_E_ITP",
     "delta_E_HyAB",
+    "delta_E_HyCH",
 ]
 
 JND_CIE1976 = 2.3
@@ -712,3 +714,73 @@ def delta_E_HyAB(Lab_1: ArrayLike, Lab_2: ArrayLike) -> NDArrayFloat:
     HyAB = np.abs(dL) + np.hypot(da, db)
 
     return as_float(HyAB)
+
+
+def delta_E_HyCH(
+    Lab_1: ArrayLike, Lab_2: ArrayLike, textiles: bool = False
+) -> NDArrayFloat:
+    """
+    Return the difference between two *CIE L\\*a\\*b\\** colourspace arrays
+    using a combination of a Euclidean metric in hue and chroma with a
+    city-block metric to incorporate lightness differences based on
+    *CIE 2000* recommendation attributes.
+
+    This metric is intended for large colour differences, on the order of 10
+    CIE L\\*a\\*b\\** units or greater.
+
+
+    Parameters
+    ----------
+    Lab_1
+        *CIE L\\*a\\*b\\** colourspace array 1.
+    Lab_2
+        *CIE L\\*a\\*b\\** colourspace array 2.
+
+    Returns
+    -------
+    :class:`numpy.ndarray`
+        Colour difference HyCH.
+
+    Notes
+    -----
+    +------------+-----------------------+-------------------+
+    | **Domain** | **Scale - Reference** | **Scale - 1**     |
+    +============+=======================+===================+
+    | ``Lab_1``  | ``L_1`` : [0, 100]    | ``L_1`` : [0, 1]  |
+    |            |                       |                   |
+    |            | ``a_1`` : [-100, 100] | ``a_1`` : [-1, 1] |
+    |            |                       |                   |
+    |            | ``b_1`` : [-100, 100] | ``b_1`` : [-1, 1] |
+    +------------+-----------------------+-------------------+
+    | ``Lab_2``  | ``L_2`` : [0, 100]    | ``L_2`` : [0, 1]  |
+    |            |                       |                   |
+    |            | ``a_2`` : [-100, 100] | ``a_2`` : [-1, 1] |
+    |            |                       |                   |
+    |            | ``b_2`` : [-100, 100] | ``b_2`` : [-1, 1] |
+    +------------+-----------------------+-------------------+
+
+    References
+    ----------
+    :cite:`Abasi2020a`
+
+    Examples
+    --------
+    >>> Lab_1 = np.array([39.91531343, 51.16658481, 146.12933781])
+    >>> Lab_2 = np.array([53.12207516, -39.92365056, 249.54831278])
+    >>> delta_E_HyCH(Lab_1, Lab_2)  # doctest: +ELLIPSIS
+    48.664279419760369...
+    """
+
+    S_L, S_C, S_H, delta_L_p, delta_C_p, delta_H_p, R_T = astuple(
+        intermediate_attributes_CIE2000(Lab_1, Lab_2)
+    )
+
+    k_L = 2 if textiles else 1
+    k_C = 1
+    k_H = 1
+
+    HyCH = np.abs(delta_L_p / (k_L * S_L)) + np.sqrt(
+        (delta_C_p / (k_C * S_C)) ** 2 + (delta_H_p / (k_H * S_H)) ** 2
+    )
+
+    return as_float(HyCH)
