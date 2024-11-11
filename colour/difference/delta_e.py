@@ -721,8 +721,13 @@ def delta_E_HyCH(
 ) -> NDArrayFloat:
     """
     Return the difference between two *CIE L\\*a\\*b\\** colourspace arrays
-    This metric is intended for large color differences,
-    on the order of 10 CIELAB units or greater
+    using a combination of a Euclidean metric in hue and chroma with a
+    city-block metric to incorporate lightness differences based on
+    *CIE 2000* recommendation attributes.
+
+    This metric is intended for large colour differences, on the order of 10
+    CIE L\\*a\\*b\\** units or greater.
+
 
     Parameters
     ----------
@@ -756,7 +761,7 @@ def delta_E_HyCH(
 
     References
     ----------
-    :cite:`Abasi2020`
+    :cite:`Abasi2020a`
 
     Examples
     --------
