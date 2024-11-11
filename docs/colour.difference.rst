@@ -116,7 +116,7 @@ DIN99
     delta_E_DIN99
 
 HyAB
------
+----
 
 ``colour.difference``
 
@@ -128,7 +128,7 @@ HyAB
     delta_E_HyAB
 
 HyCH
------
+----
 
 ``colour.difference``
 
