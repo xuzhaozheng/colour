@@ -48,9 +48,6 @@ Most of the objects are available from the ``colour`` namespace:
 Automatic Colour Conversion Graph - ``colour.graph``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Starting with version *0.3.14*, **Colour** implements an automatic colour
-conversion graph enabling easier colour conversions.
-
 ..  image:: https://colour.readthedocs.io/en/develop/_static/Examples_Colour_Automatic_Conversion_Graph.png
 
 .. code-block:: python
@@ -67,7 +64,7 @@ conversion graph enabling easier colour conversions.
     *   "sd_to_XYZ" --> "XYZ_to_sRGB"                                             *
     *                                                                             *
     ===============================================================================
-    array([ 0.45675795,  0.30986982,  0.24861924])
+    array([ 0.49034776,  0.30185875,  0.23587685])
 
 .. code-block:: python
 
@@ -95,8 +92,7 @@ Chromatic Adaptation - ``colour.adaptation``
 
 .. code-block:: text
 
-    array([ 0.2533053 ,  0.13765138,  0.01543307])
-
+    array([ 0.25331034,  0.13765286,  0.01543185])
 
 .. code-block:: python
 
@@ -105,7 +101,6 @@ Chromatic Adaptation - ``colour.adaptation``
 .. code-block:: text
 
     ['CIE 1994', 'CMCCAT2000', 'Fairchild 1990', 'Von Kries', 'Zhai 2018', 'vK20']
-
 
 Algebra - ``colour.algebra``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -149,7 +144,7 @@ Colour Appearance Models - ``colour.appearance``
 
 .. code-block:: text
 
-    CAM_Specification_CIECAM02(J=34.434525727858997, C=67.365010921125943, h=22.279164147957065, s=62.81485585332716, Q=177.47124941102123, M=70.024939419291414, H=2.6896085344238898, HC=None)
+    CAM_Specification_CIECAM02(J=34.434525727858997, C=67.365010921125915, h=22.279164147957076, s=62.814855853327131, Q=177.47124941102123, M=70.024939419291385, H=2.689608534423904, HC=None)
 
 .. code-block:: python
 
@@ -157,7 +152,7 @@ Colour Appearance Models - ``colour.appearance``
 
 .. code-block:: text
 
-    CAM_Specification_CIECAM16(J=34.434525727858997, C=67.365010921125943, h=22.279164147957065, s=62.81485585332716, Q=177.47124941102123, M=70.024939419291414, H=2.6896085344238898, HC=None)
+    CAM_Specification_CIECAM16(J=33.880368498111686, C=69.444353357408033, h=19.510887327451748, s=64.03612114840314, Q=176.03752758512178, M=72.18638534116765, H=399.52975599115319, HC=None)
 
 .. code-block:: python
 
@@ -169,11 +164,11 @@ Colour Appearance Models - ``colour.appearance``
 
 .. code-block:: python
 
-    colour.XYZ_to_Hellwig2022(XYZ, XYZ_w, L_A)
+    colour.XYZ_to_Hellwig2022(XYZ, XYZ_w, L_A, Y_b)
 
 .. code-block:: text
 
-    CAM_Specification_Hellwig2022(J=33.880368498111686, C=40.347043294550311, h=19.510887327451748, s=117.38555017188679, Q=45.34489577734751, M=53.228355383108031, H=399.52975599115319, HC=None)
+    CAM_Specification_Hellwig2022(J=33.880368498111686, C=37.579419116276348, h=19.510887327451748, s=109.33343382561695, Q=45.34489577734751, M=49.577131618021212, H=399.52975599115319, HC=None, J_HK=39.41741758094139, Q_HK=52.755585941150315)
 
 .. code-block:: python
 
@@ -181,7 +176,7 @@ Colour Appearance Models - ``colour.appearance``
 
 .. code-block:: text
 
-    CAM_Specification_Kim2009(J=19.879918542450902, C=55.839055250876946, h=22.013388165090046, s=112.97979354939129, Q=36.309026130161449, M=46.346415858227864, H=2.3543198369639931, HC=None)
+    CAM_Specification_Kim2009(J=19.879918542450937, C=55.83905525087696, h=22.013388165090031, s=112.9797935493912, Q=36.309026130161513, M=46.346415858227871, H=2.3543198369639753, HC=None)
 
 .. code-block:: python
 
@@ -189,7 +184,7 @@ Colour Appearance Models - ``colour.appearance``
 
 .. code-block:: text
 
-    CAM_Specification_ZCAM(J=38.347186278956357, C=21.12138989208518, h=33.711578931095197, s=81.444585609489536, Q=76.986725284523772, M=42.403805833900506, H=0.45779200212219573, HC=None, V=43.623590687423544, K=43.20894953152817, W=34.829588380192149)
+    CAM_Specification_ZCAM(J=38.347186278956357, C=21.121389892085183, h=33.711578931095183, s=81.444585609489536, Q=76.986725284523772, M=42.403805833900513, H=0.45779200212217158, HC=None, V=43.623590687423551, K=43.20894953152817, W=34.829588380192149)
 
 Colour Blindness - ``colour.blindness``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -198,7 +193,7 @@ Colour Blindness - ``colour.blindness``
 
     import numpy as np
 
-    cmfs = colour.LMS_CMFS["Stockman & Sharpe 2 Degree Cone Fundamentals"]
+    cmfs = colour.colorimetry.MSDS_CMFS_LMS["Stockman & Sharpe 2 Degree Cone Fundamentals"]
     colour.msds_cmfs_anomalous_trichromacy_Machado2009(cmfs, np.array([15, 0, 0]))[450]
 
 .. code-block:: text
@@ -231,7 +226,7 @@ Colour Correction - ``colour characterisation``
 
 .. code-block:: text
 
-    array([ 0.1806237 ,  0.07234791,  0.07848845])
+    array([ 0.18147565,  0.08609354,  0.08569274])
 
 .. code-block:: python
 
@@ -430,17 +425,17 @@ Blackbody Spectral Radiance Computation
 
 .. code-block:: text
 
-    SpectralDistribution([[  3.60000000e+02,   6.65427827e+12],
-                          [  3.61000000e+02,   6.70960528e+12],
-                          [  3.62000000e+02,   6.76482512e+12],
+    SpectralDistribution([[   360.        ,   6654.27827064],
+                          [   361.        ,   6709.60527925],
+                          [   362.        ,   6764.82512152],
                           ...
-                          [  7.78000000e+02,   1.06068004e+13],
-                          [  7.79000000e+02,   1.05903327e+13],
-                          [  7.80000000e+02,   1.05738520e+13]],
-                         interpolator=SpragueInterpolator,
-                         interpolator_args={},
-                         extrapolator=Extrapolator,
-                         extrapolator_args={'right': None, 'method': 'Constant', 'left': None})
+                          [   778.        ,  10606.80038243],
+                          [   779.        ,  10590.33272593],
+                          [   780.        ,  10573.85196369]],
+                         SpragueInterpolator,
+                         {},
+                         Extrapolator,
+                         {'method': 'Constant', 'left': None, 'right': None})
 
 Dominant, Complementary Wavelength & Colour Purity Computation
 **************************************************************
@@ -564,7 +559,7 @@ Luminous Flux, Efficiency & Efficacy Computation
 
 .. code-block:: text
 
-    23807.655527367202
+    23807.655527367198
 
 .. code-block:: python
 
@@ -633,6 +628,8 @@ Colour Difference - ``colour.difference``
      'CIE 2000',
      'CMC',
      'DIN99',
+     'HyAB',
+     'HyCH',
      'ITP',
      'cie1976',
      'cie1994',
@@ -1149,7 +1146,6 @@ RGB Colourspaces
      'prophoto',
      'sRGB']
 
-
 OETFs
 *****
 
@@ -1171,7 +1167,6 @@ OETFs
      'ITU-T H.273 Log',
      'ITU-T H.273 Log Sqrt',
      'SMPTE 240M']
-
 
 EOTFs
 *****
@@ -1203,7 +1198,6 @@ OOTFs
 
     ['ITU-R BT.2100 HLG', 'ITU-R BT.2100 PQ']
 
-
 Log Encoding / Decoding
 ***********************
 
@@ -1218,6 +1212,7 @@ Log Encoding / Decoding
      'ACESproxy',
      'ARRI LogC3',
      'ARRI LogC4',
+     'Apple Log Profile',
      'Canon Log',
      'Canon Log 2',
      'Canon Log 3',
@@ -1256,10 +1251,11 @@ CCTFs Encoding / Decoding
     ['ACEScc',
      'ACEScct',
      'ACESproxy',
-     'Apple Log Profile',
+     'ARIB STD-B67',
      'ARRI LogC3',
      'ARRI LogC4',
-     'ARIB STD-B67',
+     'Apple Log Profile',
+     'Blackmagic Film Generation 5',
      'Canon Log',
      'Canon Log 2',
      'Canon Log 3',
@@ -1267,6 +1263,7 @@ CCTFs Encoding / Decoding
      'D-Log',
      'DCDM',
      'DICOM GSDF',
+     'DaVinci Intermediate',
      'ERIMM RGB',
      'F-Log',
      'F-Log2',
@@ -1280,9 +1277,15 @@ CCTFs Encoding / Decoding
      'ITU-R BT.2100 PQ',
      'ITU-R BT.601',
      'ITU-R BT.709',
+     'ITU-T H.273 IEC 61966-2',
+     'ITU-T H.273 Log',
+     'ITU-T H.273 Log Sqrt',
+     'ITU-T H.273 ST.428-1',
+     'L-Log',
      'Log2',
      'Log3G10',
      'Log3G12',
+     'N-Log',
      'PLog',
      'Panalog',
      'ProPhoto RGB',
@@ -1439,21 +1442,21 @@ Optical Phenomena - ``colour.phenomena``
 
 .. code-block:: python
 
-    colour.rayleigh_scattering_sd()
+    colour.sd_rayleigh_scattering()
 
 .. code-block:: text
 
-    SpectralDistribution([[  3.60000000e+02,   5.99101337e-01],
-                          [  3.61000000e+02,   5.92170690e-01],
-                          [  3.62000000e+02,   5.85341006e-01],
+    SpectralDistribution([[  3.60000000e+02,   5.60246579e-01],
+                          [  3.61000000e+02,   5.53748137e-01],
+                          [  3.62000000e+02,   5.47344692e-01],
                           ...
-                          [  7.78000000e+02,   2.55208377e-02],
-                          [  7.79000000e+02,   2.53887969e-02],
-                          [  7.80000000e+02,   2.52576106e-02]],
-                         interpolator=SpragueInterpolator,
-                         interpolator_args={},
-                         extrapolator=Extrapolator,
-                         extrapolator_args={'right': None, 'method': 'Constant', 'left': None})
+                          [  7.78000000e+02,   2.37790178e-02],
+                          [  7.79000000e+02,   2.36559421e-02],
+                          [  7.80000000e+02,   2.35336632e-02]],
+                         SpragueInterpolator,
+                         {},
+                         Extrapolator,
+                         {'method': 'Constant', 'left': None, 'right': None})
 
 Light Quality - ``colour.quality``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1467,7 +1470,7 @@ Colour Fidelity Index
 
 .. code-block:: text
 
-    70.120825477833037
+    70.120824401428848
 
 .. code-block:: python
 
@@ -1486,7 +1489,7 @@ Colour Quality Scale
 
 .. code-block:: text
 
-    64.111703163816699
+    64.111822015662824
 
 .. code-block:: python
 
@@ -1505,7 +1508,7 @@ Colour Rendering Index
 
 .. code-block:: text
 
-    64.233724121664807
+    64.233724121664793
 
 Academy Spectral Similarity Index (SSI)
 ***************************************
@@ -1532,13 +1535,13 @@ Reflectance Recovery
 
 .. code-block:: text
 
-    SpectralDistribution([[  3.60000000e+02,   8.40144095e-02],
-                          [  3.65000000e+02,   8.41264236e-02],
-                          [  3.70000000e+02,   8.40057597e-02],
+    SpectralDistribution([[  3.60000000e+02,   8.52694330e-02],
+                          [  3.65000000e+02,   8.52203359e-02],
+                          [  3.70000000e+02,   8.52841304e-02],
                           ...
-                          [  7.70000000e+02,   4.46743012e-01],
-                          [  7.75000000e+02,   4.46817187e-01],
-                          [  7.80000000e+02,   4.46857696e-01]],
+                          [  7.70000000e+02,   4.46546872e-01],
+                          [  7.75000000e+02,   4.46638451e-01],
+                          [  7.80000000e+02,   4.46641739e-01]],
                          SpragueInterpolator,
                          {},
                          Extrapolator,
@@ -1582,19 +1585,19 @@ Camera RGB Sensitivities Recovery
 
 .. code-block:: text
 
-    RGB_CameraSensitivities([[  4.00000000e+02,   7.22815777e-03,   9.22506480e-03,
-                               -9.88368972e-03],
-                             [  4.10000000e+02,  -8.50457609e-03,   1.12777480e-02,
-                                3.86248655e-03],
-                             [  4.20000000e+02,   4.58191132e-02,   7.15520948e-02,
-                                4.04068293e-01],
+    RGB_CameraSensitivities([[  4.00000000e+02,   7.04378461e-03,   9.21260449e-03,
+                               -7.64080878e-03],
+                             [  4.10000000e+02,  -8.76715607e-03,   1.12726694e-02,
+                                6.37434190e-03],
+                             [  4.20000000e+02,   4.58126856e-02,   7.18000418e-02,
+                                4.00001696e-01],
                              ...
-                             [  6.80000000e+02,   4.08276173e-02,   5.55290476e-03,
-                                1.39907862e-03],
-                             [  6.90000000e+02,  -3.71437574e-03,   2.50935640e-03,
-                                3.97652622e-04],
-                             [  7.00000000e+02,  -5.62256563e-03,   1.56433970e-03,
-                                5.84726936e-04]],
+                             [  6.80000000e+02,   4.00195568e-02,   5.55512389e-03,
+                                1.36794925e-03],
+                             [  6.90000000e+02,  -4.32240535e-03,   2.49731193e-03,
+                                3.80303275e-04],
+                             [  7.00000000e+02,  -6.00395414e-03,   1.54678227e-03,
+                                5.40394352e-04]],
                             ['red', 'green', 'blue'],
                             SpragueInterpolator,
                             {},
@@ -1610,7 +1613,7 @@ Correlated Colour Temperature Computation Methods - ``colour.temperature``
 
 .. code-block:: text
 
-    array([  6.50751282e+03,   3.22335875e-03])
+    array([  6.50747479e+03,   3.22334634e-03])
 
 .. code-block:: python
 
@@ -1721,7 +1724,7 @@ Blackbody
 .. code-block:: python
 
     blackbody_sds = [
-        colour.sd_blackbody(i, colour.SpectralShape(0, 10000, 10))
+        colour.sd_blackbody(i, colour.SpectralShape(1, 10001, 10))
         for i in range(1000, 15000, 1000)
     ]
     plot_multi_sds(
@@ -1757,8 +1760,8 @@ Luminous Efficiency
     plot_multi_sds(
         (
             sd_mesopic_luminous_efficiency_function,
-            colour.PHOTOPIC_LEFS["CIE 1924 Photopic Standard Observer"],
-            colour.SCOTOPIC_LEFS["CIE 1951 Scotopic Standard Observer"],
+            colour.colorimetry.SDS_LEFS_PHOTOPIC["CIE 1924 Photopic Standard Observer"],
+            colour.colorimetry.SDS_LEFS_SCOTOPIC["CIE 1951 Scotopic Standard Observer"],
         ),
         y_label="Luminous Efficiency",
         legend_location="upper right",
