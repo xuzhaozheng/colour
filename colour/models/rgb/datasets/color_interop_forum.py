@@ -16,7 +16,7 @@ Define the *Color Interop Forum* (CIF) recommendation *RGB* colourspaces:
 -   :attr:`colour.models.RGB_COLOURSPACE_G22_AP1_SCENE`
 -   :attr:`colour.models.RGB_COLOURSPACE_SRGB_P3D65_SCENE`
 -   :attr:`colour.models.RGB_COLOURSPACE_G22_ADOBERGB_SCENE`
--   :attr:`colour.models.RGB_COLOURSPACES_TEXTURE_ASSETS_AND_CG_RENDERING_CIF_`
+-   :attr:`colour.models.RGB_COLOURSPACES_TEXTURE_ASSETS_AND_CG_RENDERING_CIF`
 
 References
 ----------
