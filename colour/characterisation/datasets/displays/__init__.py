@@ -11,9 +11,10 @@ context=article
     http://www.lume.ufrgs.br/handle/10183/26950
 """
 
+from colour.utilities import LazyCanonicalMapping
+
 from .crt import MSDS_DISPLAY_PRIMARIES_CRT
 from .lcd import MSDS_DISPLAY_PRIMARIES_LCD
-from colour.utilities import LazyCanonicalMapping
 
 MSDS_DISPLAY_PRIMARIES = LazyCanonicalMapping(MSDS_DISPLAY_PRIMARIES_CRT)
 MSDS_DISPLAY_PRIMARIES.update(MSDS_DISPLAY_PRIMARIES_LCD)

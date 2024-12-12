@@ -35,6 +35,8 @@ Melgosa_CIEDE2000_Workshop-July4.pdf
     August 29, 2014, from http://en.wikipedia.org/wiki/Color_difference
 """
 
+# isort: skip_file
+
 from __future__ import annotations
 
 from colour.hints import Any, ArrayLike, NDArrayFloat, LiteralDeltaEMethod

@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .spectrum import (
     SpectralShape,
     SPECTRAL_SHAPE_DEFAULT,

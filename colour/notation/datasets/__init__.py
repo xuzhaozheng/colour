@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .css_color_3 import CSS_COLOR_3_BASIC, CSS_COLOR_3_EXTENDED, CSS_COLOR_3
 from .munsell import (
     MUNSELL_COLOURS_ALL,

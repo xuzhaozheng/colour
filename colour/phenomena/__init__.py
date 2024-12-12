@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .rayleigh import (
     scattering_cross_section,
     rayleigh_optical_depth,

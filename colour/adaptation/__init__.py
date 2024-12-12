@@ -27,6 +27,8 @@ References
     Express, 26(6), 7724. doi:10.1364/OE.26.007724
 """
 
+# isort: skip_file
+
 from __future__ import annotations
 
 from colour.hints import Any, ArrayLike, Literal, NDArrayFloat

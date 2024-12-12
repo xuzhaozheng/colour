@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .michaelis_menten import (
     REACTION_RATE_MICHAELISMENTEN_METHODS,
     reaction_rate_MichaelisMenten,

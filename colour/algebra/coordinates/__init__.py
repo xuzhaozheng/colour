@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .transformations import (
     cartesian_to_spherical,
     spherical_to_cartesian,

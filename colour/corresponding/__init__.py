@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .datasets import *  # noqa: F403
 from . import datasets
 from .prediction import (

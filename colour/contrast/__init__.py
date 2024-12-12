@@ -16,6 +16,8 @@ References
     https://www.itu.int/dms_pub/itu-r/opb/rep/R-REP-BT.2246-4-2015-PDF-E.pdf
 """
 
+# isort: skip_file
+
 from __future__ import annotations
 
 from colour.hints import NDArrayFloat, Literal

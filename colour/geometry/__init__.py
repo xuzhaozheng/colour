@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .ellipse import (
     ellipse_coefficients_general_form,
     ellipse_coefficients_canonical_form,

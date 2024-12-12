@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .datasets import (
     CSS_COLOR_3_BASIC,
     CSS_COLOR_3_EXTENDED,

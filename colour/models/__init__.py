@@ -1,3 +1,5 @@
+# isort: skip_file
+
 import sys
 
 from colour.utilities import copy_definition

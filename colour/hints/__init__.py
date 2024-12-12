@@ -9,11 +9,11 @@ imports.
 
 from __future__ import annotations
 
-import numpy as np
 import re
-from numpy.typing import ArrayLike, NDArray
+from collections.abc import Generator, Iterable, Iterator, Mapping, Sequence
 from types import ModuleType
 from typing import (  # noqa: UP035
+    TYPE_CHECKING,
     Any,
     Callable,
     ClassVar,
@@ -24,17 +24,18 @@ from typing import (  # noqa: UP035
     Protocol,
     Set,
     SupportsIndex,
-    TYPE_CHECKING,
     TextIO,
     Tuple,
     Type,
-    TypeVar,
     TypedDict,
+    TypeVar,
     cast,
     overload,
     runtime_checkable,
 )
-from collections.abc import Generator, Iterable, Iterator, Mapping, Sequence
+
+import numpy as np
+from numpy.typing import ArrayLike, NDArray
 from typing_extensions import Self
 
 __author__ = "Colour Developers"

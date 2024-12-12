@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .cameras import RGB_CameraSensitivities
 from .displays import RGB_DisplayPrimaries
 from .datasets import *  # noqa: F403

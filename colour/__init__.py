@@ -44,6 +44,8 @@ Sub-packages
 -   volume: Colourspace volumes computation and optimal colour stimuli.
 """
 
+# isort: skip_file
+
 import contextlib
 import json
 import os

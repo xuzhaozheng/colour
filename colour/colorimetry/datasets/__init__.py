@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .cmfs import (
     MSDS_CMFS,
     MSDS_CMFS_LMS,
