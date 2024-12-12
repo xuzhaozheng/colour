@@ -141,10 +141,10 @@ def read_spectral_data_from_csv_file(
 
         settings["delimiter"] = ","
 
-        transposed_csv_file = tempfile.NamedTemporaryFile(mode="w", delete=False)
-        path = transposed_csv_file.name
-        csv.writer(transposed_csv_file).writerows(content)
-        transposed_csv_file.close()
+        with tempfile.NamedTemporaryFile(mode="w", delete=False) as transposed_csv_file:
+            path = transposed_csv_file.name
+            csv.writer(transposed_csv_file).writerows(content)
+            transposed_csv_file.close()
 
     data = np.genfromtxt(path, **filter_kwargs(np.genfromtxt, **settings))
 

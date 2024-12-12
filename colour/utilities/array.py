@@ -23,7 +23,7 @@ import sys
 from collections.abc import KeysView, ValuesView
 from contextlib import contextmanager
 from dataclasses import fields, is_dataclass, replace
-from operator import add, mul, pow, sub, truediv
+from operator import add, mul, pow, sub, truediv  # noqa: A004
 
 import numpy as np
 

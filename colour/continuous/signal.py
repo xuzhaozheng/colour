@@ -10,6 +10,7 @@ Define the class implementing support for continuous signal:
 from __future__ import annotations
 
 from collections.abc import Iterator, Mapping, Sequence, ValuesView
+from operator import pow  # noqa: A004
 from operator import (
     add,
     iadd,
@@ -18,7 +19,6 @@ from operator import (
     isub,
     itruediv,
     mul,
-    pow,
     sub,
     truediv,
 )

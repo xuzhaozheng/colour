@@ -162,7 +162,7 @@ def ctl_render(
 
     ctl_transforms_mapping: Dict[str, Sequence]
     if isinstance(ctl_transforms, Sequence):
-        ctl_transforms_mapping = dict.fromkeys(ctl_transforms, [])
+        ctl_transforms_mapping = {ctl_transform: [] for ctl_transform in ctl_transforms}
     else:
         ctl_transforms_mapping = ctl_transforms
 
@@ -186,8 +186,8 @@ def ctl_render(
     for arg in args:
         command += arg.split()
 
-    completed_process = subprocess.run(
-        command,  # noqa: S603
+    completed_process = subprocess.run(  # noqa: S603
+        command,
         check=False,
         **kwargs,
     )
@@ -403,7 +403,7 @@ def template_ctl_transform_float(
         bOut = Y_2_linCV(bIn, CINEMA_WHITE, CINEMA_BLACK);
         aOut = aIn;
     }
-    """  # noqa: D405, D407, D410, D411
+    """
 
     G_function = optional(G_function, R_function)
     B_function = optional(B_function, R_function)
@@ -529,7 +529,7 @@ def template_ctl_transform_float3(
         bOut = rgbOut[2];
         aOut = aIn;
     }
-    """  # noqa: D405, D407, D410, D411
+    """
 
     parameters = optional(parameters, "")
     imports = optional(imports, [])

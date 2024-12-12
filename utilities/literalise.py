@@ -15,7 +15,7 @@ import matplotlib.font_manager
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-import colour  # noqa: E402
+import colour
 
 __copyright__ = "Copyright 2013 Colour Developers"
 __license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"

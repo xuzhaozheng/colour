@@ -108,12 +108,12 @@ class TestLookup:
         """
 
         lookup = Lookup(John="Doe", Jane="Doe", Luke="Skywalker")
-        assert ["Jane", "John"] == sorted(lookup.keys_from_value("Doe"))
+        assert sorted(lookup.keys_from_value("Doe")) == ["Jane", "John"]
 
         lookup = Lookup(
             A=np.array([0, 1, 2]), B=np.array([0, 1, 2]), C=np.array([1, 2, 3])
         )
-        assert ["A", "B"] == sorted(lookup.keys_from_value(np.array([0, 1, 2])))
+        assert sorted(lookup.keys_from_value(np.array([0, 1, 2]))) == ["A", "B"]
 
     def test_first_key_from_value(self):
         """

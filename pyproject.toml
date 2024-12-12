@@ -104,11 +104,8 @@ build-backend = "hatchling.build"
 packages = [ "colour" ]
 
 [tool.codespell]
-ignore-words-list = "co-ordinates,exitance,hart,ist"
+ignore-words-list = "co-ordinates,exitance,hart,ist,rIn,socio-economic"
 skip = "BIBLIOGRAPHY.bib,CONTRIBUTORS.rst"
-
-[tool.flynt]
-line_length = 999
 
 [tool.isort]
 ensure_newline_before_comments = true
