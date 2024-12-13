@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .chromaticity_coordinates import CCS_ILLUMINANTS
 from .sds_d_illuminant_series import (
     SDS_BASIS_FUNCTIONS_CIE_ILLUMINANT_D_SERIES,

@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .astm_g_173 import (
     SD_ASTMG173_ETR,
     SD_ASTMG173_GLOBAL_TILT,

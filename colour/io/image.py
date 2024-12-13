@@ -126,7 +126,7 @@ if is_openimageio_installed():  # pragma: no cover
             "float128", np.float128, DOUBLE
         )
 else:  # pragma: no cover
-    #
+
     class ImageSpec:
         attribute: Any
 

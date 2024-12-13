@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .cat import CHROMATIC_ADAPTATION_TRANSFORMS
 from .cat import (
     CAT_XYZ_SCALING,

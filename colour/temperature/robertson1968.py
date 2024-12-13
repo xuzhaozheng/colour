@@ -242,10 +242,7 @@ def _uv_to_CCT_Robertson1968(uv: ArrayLike) -> NDArrayFloat:
         dt = -uu * dv + vv * du
 
         if dt <= 0 or i == 30:
-            if dt > 0:
-                dt = 0
-
-            dt = -dt
+            dt = -min(dt, 0)
 
             f = 0 if i == 1 else dt / (last_dt + dt)
 

@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .dyer2017 import (
     SPECTRAL_SHAPE_BASIS_FUNCTIONS_DYER2017,
     BASIS_FUNCTIONS_DYER2017,

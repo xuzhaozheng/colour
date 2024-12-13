@@ -680,7 +680,7 @@ class TestSetDefaultFloatDtype(unittest.TestCase):
                 # Spectral distributions are instantiated with float64 data and
                 # spectral up-sampling optimization fails.
                 if (
-                    "Spectral Distribution" in (source, target)
+                    "Spectral Distribution" in (source, target)  # noqa: PLR1714
                     or target == "Complementary Wavelength"
                     or target == "Dominant Wavelength"
                 ):

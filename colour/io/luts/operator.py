@@ -431,15 +431,12 @@ class LUTOperatorMatrix(AbstractLUTSequenceOperator):
         True
         """
 
-        if isinstance(other, LUTOperatorMatrix) and all(
+        return isinstance(other, LUTOperatorMatrix) and all(
             [
                 np.array_equal(self._matrix, other._matrix),
                 np.array_equal(self._offset, other._offset),
             ]
-        ):
-            return True
-
-        return False
+        )
 
     def __ne__(self, other: Any) -> bool:
         """

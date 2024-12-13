@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .conversion import (
     CONVERSION_GRAPH,
     CONVERSION_GRAPH_NODE_LABELS,

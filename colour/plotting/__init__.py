@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from colour.utilities import is_matplotlib_installed
 
 if not is_matplotlib_installed():  # pragma: no cover

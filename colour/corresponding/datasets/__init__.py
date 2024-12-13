@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .breneman1987 import (
     BRENEMAN_EXPERIMENTS,
     BRENEMAN_EXPERIMENT_PRIMARIES_CHROMATICITIES,

@@ -62,8 +62,8 @@ def is_ctlrender_installed(raise_exception: bool = False) -> bool:
     """
 
     try:  # pragma: no cover
-        stdout = subprocess.run(
-            ["ctlrender", "-help"],  # noqa: S603, S607
+        stdout = subprocess.run(  # noqa: S603
+            ["ctlrender", "-help"],  # noqa: S607
             capture_output=True,
             check=False,
         ).stdout.decode("utf-8")

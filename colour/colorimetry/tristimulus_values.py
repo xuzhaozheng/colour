@@ -410,38 +410,35 @@ def tristimulus_weighting_factors_ASTME2022(
     i_c = W.shape[0]
     i_cm = i_c - 1
 
-    # "k" is used as index in the nested loop.
-    k_n = k
-
     for i in range(3):
         # First interval.
-        for j in range(r_c):
-            for k in range(3):
-                W[k, i] = W[k, i] + c_c[j, k] * S[j + 1] * Y[j + 1, i]
+        for h in range(r_c):
+            for g in range(3):
+                W[g, i] = W[g, i] + c_c[h, g] * S[h + 1] * Y[h + 1, i]
 
         # Last interval.
-        for j in range(r_c):
-            for k in range(i_cm, i_cm - 3, -1):
-                W[k, i] = (
-                    W[k, i]
-                    + c_c[r_c - j - 1, i_cm - k] * S[j + w_lif] * Y[j + w_lif, i]
+        for h in range(r_c):
+            for g in range(i_cm, i_cm - 3, -1):
+                W[g, i] = (
+                    W[g, i]
+                    + c_c[r_c - h - 1, i_cm - g] * S[h + w_lif] * Y[h + w_lif, i]
                 )
 
         # Intermediate intervals.
-        for j in range(i_c - 3):
-            for k in range(r_c):
-                w_i = (r_c + 1) * (j + 1) + 1 + k
-                W[j, i] = W[j, i] + c_b[k, 0] * S[w_i] * Y[w_i, i]
-                W[j + 1, i] = W[j + 1, i] + c_b[k, 1] * S[w_i] * Y[w_i, i]
-                W[j + 2, i] = W[j + 2, i] + c_b[k, 2] * S[w_i] * Y[w_i, i]
-                W[j + 3, i] = W[j + 3, i] + c_b[k, 3] * S[w_i] * Y[w_i, i]
+        for h in range(i_c - 3):
+            for g in range(r_c):
+                w_i = (r_c + 1) * (h + 1) + 1 + g
+                W[h, i] = W[h, i] + c_b[g, 0] * S[w_i] * Y[w_i, i]
+                W[h + 1, i] = W[h + 1, i] + c_b[g, 1] * S[w_i] * Y[w_i, i]
+                W[h + 2, i] = W[h + 2, i] + c_b[g, 2] * S[w_i] * Y[w_i, i]
+                W[h + 3, i] = W[h + 3, i] + c_b[g, 3] * S[w_i] * Y[w_i, i]
 
         # Extrapolation of potential incomplete interval.
-        for j in range(as_int_scalar(w_c - ((w_c - 1) % interval_i)), w_c, 1):
-            W[i_cm, i] = W[i_cm, i] + S[j] * Y[j, i]
+        for h in range(as_int_scalar(w_c - ((w_c - 1) % interval_i)), w_c, 1):
+            W[i_cm, i] = W[i_cm, i] + S[h] * Y[h, i]
 
     with sdiv_mode():
-        W *= optional(k_n, sdiv(100, np.sum(W, axis=0)[1]))
+        W *= optional(k, sdiv(100, np.sum(W, axis=0)[1]))
 
     _CACHE_TRISTIMULUS_WEIGHTING_FACTORS[hash_key] = np.copy(W)
 

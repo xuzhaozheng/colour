@@ -20,7 +20,7 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from xml.dom import minidom
-from xml.etree import ElementTree
+from xml.etree import ElementTree as ET
 
 from colour.colorimetry import SpectralDistribution
 from colour.hints import Any, Callable, Literal
@@ -1667,7 +1667,7 @@ class SpectralDistribution_IESTM2714(SpectralDistribution):
         if self._path is not None:
             formatter = "./{{{0}}}{1}/{{{0}}}{2}"
 
-            tree = ElementTree.parse(self._path)  # noqa: S314
+            tree = ET.parse(self._path)  # noqa: S314
             root = tree.getroot()
 
             match = re.match("{(.*)}", root.tag)
@@ -1751,20 +1751,18 @@ class SpectralDistribution_IESTM2714(SpectralDistribution):
         """
 
         if self._path is not None:
-            root = ElementTree.Element("IESTM2714")
+            root = ET.Element("IESTM2714")
             root.attrib = {
                 "xmlns": NAMESPACE_IESTM2714,
                 "version": VERSION_IESTM2714,
             }
 
-            spectral_distribution = ElementTree.Element("")
+            spectral_distribution = ET.Element("")
             for header_element in (self.header, self):
                 mapping = header_element.mapping
-                element = ElementTree.SubElement(root, mapping.element)
+                element = ET.SubElement(root, mapping.element)
                 for specification in mapping.elements:
-                    element_child = ElementTree.SubElement(
-                        element, specification.element
-                    )
+                    element_child = ET.SubElement(element, specification.element)
                     value = getattr(header_element, specification.attribute)
                     element_child.text = specification.write_conversion(value)
 
@@ -1773,7 +1771,7 @@ class SpectralDistribution_IESTM2714(SpectralDistribution):
 
             # Writing spectral data.
             for wavelength, value in tstack([self.wavelengths, self.values]):
-                element_child = ElementTree.SubElement(
+                element_child = ET.SubElement(
                     spectral_distribution, mapping.data.element
                 )
                 element_child.text = mapping.data.write_conversion(value)
@@ -1782,7 +1780,7 @@ class SpectralDistribution_IESTM2714(SpectralDistribution):
                 }
 
             xml = minidom.parseString(  # noqa: S318
-                ElementTree.tostring(root)
+                ET.tostring(root)
             ).toprettyxml()
 
             with open(self._path, "w") as file:

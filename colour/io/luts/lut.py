@@ -14,6 +14,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from copy import deepcopy
+from operator import pow  # noqa: A004
 from operator import (
     add,
     iadd,
@@ -22,7 +23,6 @@ from operator import (
     isub,
     itruediv,
     mul,
-    pow,
     sub,
     truediv,
 )
@@ -372,15 +372,12 @@ class AbstractLUT(ABC):
             Whether given object is equal to the *LUT*.
         """
 
-        if isinstance(other, AbstractLUT) and all(
+        return isinstance(other, AbstractLUT) and all(
             [
                 np.array_equal(self.table, other.table),
                 np.array_equal(self.domain, other.domain),
             ]
-        ):
-            return True
-
-        return False
+        )
 
     def __ne__(self, other: Any) -> bool:
         """

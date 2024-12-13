@@ -9,11 +9,11 @@ imports.
 
 from __future__ import annotations
 
-import numpy as np
 import re
-from numpy.typing import ArrayLike, NDArray
+from collections.abc import Generator, Iterable, Iterator, Mapping, Sequence
 from types import ModuleType
 from typing import (  # noqa: UP035
+    TYPE_CHECKING,
     Any,
     Callable,
     ClassVar,
@@ -24,17 +24,18 @@ from typing import (  # noqa: UP035
     Protocol,
     Set,
     SupportsIndex,
-    TYPE_CHECKING,
     TextIO,
     Tuple,
     Type,
-    TypeVar,
     TypedDict,
+    TypeVar,
     cast,
     overload,
     runtime_checkable,
 )
-from collections.abc import Generator, Iterable, Iterator, Mapping, Sequence
+
+import numpy as np
+from numpy.typing import ArrayLike, NDArray
 from typing_extensions import Self
 
 __author__ = "Colour Developers"
@@ -147,19 +148,16 @@ class ProtocolInterpolator(Protocol):  # noqa: D101  # pragma: no cover
         ...
 
     @x.setter
-    def x(self, value: ArrayLike):
-        ...
+    def x(self, value: ArrayLike): ...
 
     @property
     def y(self) -> NDArray:  # noqa: D102
         ...
 
     @y.setter
-    def y(self, value: ArrayLike):
-        ...
+    def y(self, value: ArrayLike): ...
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        ...  # pragma: no cover
+    def __init__(self, *args: Any, **kwargs: Any) -> None: ...  # pragma: no cover
 
     def __call__(self, x: ArrayLike) -> NDArray:  # noqa: D102
         ...  # pragma: no cover
@@ -171,11 +169,9 @@ class ProtocolExtrapolator(Protocol):  # noqa: D101  # pragma: no cover
         ...
 
     @interpolator.setter
-    def interpolator(self, value: ProtocolInterpolator):
-        ...
+    def interpolator(self, value: ProtocolInterpolator): ...
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        ...  # pragma: no cover
+    def __init__(self, *args: Any, **kwargs: Any) -> None: ...  # pragma: no cover
 
     def __call__(self, x: ArrayLike) -> NDArray:  # noqa: D102
         ...  # pragma: no cover
@@ -617,12 +613,10 @@ LiteralFontScaling = Literal[
 # LITERALISE::END
 
 
-def arraylike(a: ArrayLike) -> NDArray:  # noqa: ARG001
-    ...
+def arraylike(a: ArrayLike) -> NDArray: ...
 
 
-def number_or_arraylike(a: ArrayLike) -> NDArray:  # noqa: ARG001
-    ...
+def number_or_arraylike(a: ArrayLike) -> NDArray: ...
 
 
 a: DTypeFloat = np.float64(1)

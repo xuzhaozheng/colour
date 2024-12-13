@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .report import (
     plot_single_sd_colour_rendition_report_full,
     plot_single_sd_colour_rendition_report_intermediate,

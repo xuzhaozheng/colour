@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .datasets import *  # noqa: F403
 from . import datasets
 from .macadam_limits import is_within_macadam_limits

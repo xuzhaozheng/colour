@@ -1369,7 +1369,7 @@ def plot_multi_colour_swatches(
         axes.fill(
             (x_0, x_1, x_1, x_0),
             (y_0, y_0, y_1, y_1),
-            color=np.clip(colour_swatches_reference[i].RGB, 0, 1),
+            color=np.clip(colour_swatch.RGB, 0, 1),
             zorder=CONSTANTS_COLOUR_STYLE.zorder.midground_polygon,
         )
 

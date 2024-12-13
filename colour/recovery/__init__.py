@@ -18,8 +18,9 @@ References
     doi:10.1080/10867651.1999.10487511
 """
 
-from __future__ import annotations
+# isort: skip_file
 
+from __future__ import annotations
 
 from colour.colorimetry import SpectralDistribution
 from colour.hints import Any, ArrayLike, Literal

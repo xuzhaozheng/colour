@@ -39,6 +39,8 @@ Set_xy_coord. https://www.adobe.com/support/downloads/dng/dng_sdk.html
     ISBN:978-0-471-39918-6
 """
 
+# isort: skip_file
+
 from __future__ import annotations
 
 from colour.hints import Any, ArrayLike, NDArrayFloat, Literal

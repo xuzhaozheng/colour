@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .hunt import (
     InductionFactors_Hunt,
     VIEWING_CONDITIONS_HUNT,

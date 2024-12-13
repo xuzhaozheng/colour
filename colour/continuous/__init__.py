@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .abstract import AbstractContinuousFunction
 from .signal import Signal
 from .multi_signals import MultiSignals

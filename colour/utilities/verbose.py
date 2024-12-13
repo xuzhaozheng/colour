@@ -591,7 +591,7 @@ class suppress_stdout:
         """Redirect the standard output upon entering the context manager."""
 
         self._stdout = sys.stdout
-        sys.stdout = open(os.devnull, "w")  # noqa: SIM115
+        sys.stdout = open(os.devnull, "w")
 
         return self
 
@@ -797,8 +797,8 @@ def describe_environment(
     # NOTE: A few clauses are not reached and a few packages are not available
     # during continuous integration and are thus ignored for coverage.
     try:  # pragma: no cover
-        output = subprocess.check_output(
-            ["git", "describe"],  # noqa: S603, S607
+        output = subprocess.check_output(  # noqa: S603
+            ["git", "describe"],  # noqa: S607
             cwd=colour.__path__[0],  # pyright: ignore
             stderr=subprocess.STDOUT,
         ).strip()
