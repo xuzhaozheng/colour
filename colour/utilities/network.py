@@ -1320,7 +1320,7 @@ class PortNode(TreeNode, MixinLogging):
 
         self._input_ports[name].value = value
 
-    def get_output(self, name: str) -> None:
+    def get_output(self, name: str) -> Any:
         """
         Return the value of the output port with given name.
 
