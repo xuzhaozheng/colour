@@ -10,9 +10,9 @@ Define *Sony* *.spimtx* *LUT* format related input / output utilities objects.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import typing
 
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     from pathlib import Path
     from io import StringIO
 

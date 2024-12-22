@@ -11,7 +11,10 @@ objects:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import typing
+
+if typing.TYPE_CHECKING:
+    from pathlib import Path
 
 import numpy as np
 
@@ -25,9 +28,6 @@ from colour.utilities import (
     format_array_as_row,
     usage_warning,
 )
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2013 Colour Developers"

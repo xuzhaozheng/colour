@@ -10,9 +10,9 @@ from __future__ import annotations
 
 import os
 import re
-from typing import TYPE_CHECKING
+import typing
 
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     from pathlib import Path
 
 __author__ = "Colour Developers"
