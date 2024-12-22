@@ -12,14 +12,15 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from pathlib import Path
+    from io import StringIO
+
 import numpy as np
 
 from colour.constants import DTYPE_FLOAT_DEFAULT
 from colour.io.luts import LUTOperatorMatrix
 from colour.io.luts.common import path_to_title
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2013 Colour Developers"
@@ -82,7 +83,7 @@ def read_LUT_SonySPImtx(path: str | Path) -> LUTOperatorMatrix:
 
 
 def write_LUT_SonySPImtx(
-    LUT: LUTOperatorMatrix, path: str | Path, decimals: int = 7
+    LUT: LUTOperatorMatrix, path: str | Path | StringIO, decimals: int = 7
 ) -> bool:
     """
     Write given *LUT* to given *Sony* *.spimtx* *LUT* file.
@@ -114,8 +115,6 @@ def write_LUT_SonySPImtx(
     >>> M = LUTOperatorMatrix(matrix)
     >>> write_LUT_SonySPI1D(M, "My_LUT.spimtx")  # doctest: +SKIP
     """
-
-    path = str(path)
 
     matrix, offset = LUT.matrix, LUT.offset
     offset *= 65535
