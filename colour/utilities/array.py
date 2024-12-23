@@ -2363,7 +2363,7 @@ def orient(
     return oriented
 
 
-def centroid(a: ArrayLike) -> NDArray:
+def centroid(a: ArrayLike) -> NDArrayInt:
     """
     Return the centroid indexes of given array :math:`a`.
 
@@ -2401,7 +2401,7 @@ def centroid(a: ArrayLike) -> NDArray:
 
         a_ci.append(np.sum(axis * a) // a_s)
 
-    return np.array(a_ci).astype(DTYPE_INT_DEFAULT)
+    return as_int_array(a_ci)
 
 
 def fill_nan(
