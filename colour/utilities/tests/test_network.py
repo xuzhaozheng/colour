@@ -21,6 +21,10 @@ from colour.utilities import (
     TreeNode,
     is_pydot_installed,
 )
+from colour.utilities.network import (
+    ProcessPoolExecutorManager,
+    ThreadPoolExecutorManager,
+)
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2013 Colour Developers"
@@ -35,7 +39,9 @@ __all__ = [
     "TestPortNode",
     "TestPortGraph",
     "TestFor",
+    "TestThreadPoolExecutorManager",
     "TestParallelForThread",
+    "TestProcessPoolExecutorManager",
     "TestParallelForMultiProcess",
 ]
 
@@ -1084,6 +1090,20 @@ class _SubGraph2(ExecutionNode, PortGraph):
         super().process(**kwargs)
 
 
+class TestThreadPoolExecutorManager:
+    """
+    Define :class:`colour.utilities.network.ThreadPoolExecutorManager` class unit tests
+    methods.
+    """
+
+    def test_ThreadPoolExecutorManager(self) -> None:
+        """Test :class:`colour.utilities.network.ThreadPoolExecutorManager` class."""
+
+        executor = ThreadPoolExecutorManager.get_executor()
+
+        assert executor is not None
+
+
 class TestParallelForThread:
     """
     Define :class:`colour.utilities.network.ParallelForThread` class unit tests
@@ -1106,6 +1126,20 @@ class TestParallelForThread:
         loop.process()
 
         assert sum_array.get_output("summation") == 140
+
+
+class TestProcessPoolExecutorManager:
+    """
+    Define :class:`colour.utilities.network.ProcessPoolExecutorManager` class unit tests
+    methods.
+    """
+
+    def test_ProcessPoolExecutorManager(self) -> None:
+        """Test :class:`colour.utilities.network.ProcessPoolExecutorManager` class."""
+
+        executor = ProcessPoolExecutorManager.get_executor()
+
+        assert executor is not None
 
 
 class TestParallelForMultiProcess:

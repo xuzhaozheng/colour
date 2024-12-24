@@ -28,6 +28,7 @@ Define various node-graph / network related classes:
 
 from __future__ import annotations
 
+import atexit
 import concurrent.futures
 import multiprocessing
 import os
@@ -65,7 +66,9 @@ __all__ = [
     "ExecutionNode",
     "ControlFlowNode",
     "For",
+    "ThreadPoolExecutorManager",
     "ParallelForThread",
+    "ProcessPoolExecutorManager",
     "ParallelForMultiprocess",
 ]
 
@@ -2140,6 +2143,65 @@ def _task_thread(args: Sequence) -> tuple[int, Any]:
     return i, sub_graph.get_output("output")
 
 
+class ThreadPoolExecutorManager:
+    """
+    Define a singleton class managing our
+    :class:`concurrent.futures.ThreadPoolExecutor` class instance.
+
+    Attributes
+    ----------
+    -   :attr:`~colour.utilities.ThreadPoolExecutorManager.ThreadPoolExecutor`
+
+    Methods
+    -------
+    -   :meth:`~colour.utilities.ThreadPoolExecutorManager.get_executor`
+    -   :meth:`~colour.utilities.ThreadPoolExecutorManager.shutdown_executor`
+    """
+
+    ThreadPoolExecutor: concurrent.futures.ThreadPoolExecutor | None = None
+
+    @staticmethod
+    def get_executor(
+        max_workers: int | None = None,
+    ) -> concurrent.futures.ThreadPoolExecutor:
+        """
+        Return the :class:`concurrent.futures.ThreadPoolExecutor` class instance or
+        create it if not existing.
+
+        Parameters
+        ----------
+        max_workers
+            Maximum worker count.
+
+        Returns
+        -------
+        :class:`concurrent.futures.ThreadPoolExecutor`
+
+        Notes
+        -----
+        The :class:`concurrent.futures.ThreadPoolExecutor` class instance is
+        automatically shutdown on process exit.
+        """
+
+        if ThreadPoolExecutorManager.ThreadPoolExecutor is None:
+            ThreadPoolExecutorManager.ThreadPoolExecutor = (
+                concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
+            )
+
+        return ThreadPoolExecutorManager.ThreadPoolExecutor
+
+    @atexit.register
+    @staticmethod
+    def shutdown_executor() -> None:
+        """
+        Shutdown the :class:`concurrent.futures.ThreadPoolExecutor` class instance.
+        """
+
+        if ThreadPoolExecutorManager.ThreadPoolExecutor is not None:
+            ThreadPoolExecutorManager.ThreadPoolExecutor.shutdown(wait=True)
+            ThreadPoolExecutorManager.ThreadPoolExecutor = None
+
+
 class ParallelForThread(ControlFlowNode):
     """
     Define an advanced ``for`` loop node distributing the work across multiple
@@ -2198,18 +2260,20 @@ class ParallelForThread(ControlFlowNode):
         self.log(f'Processing "{node}" node...')
 
         results = {}
-        with concurrent.futures.ThreadPoolExecutor(
+        thread_pool_executor = ThreadPoolExecutorManager.get_executor(
             max_workers=self.get_input("workers")
-        ) as executor:
-            futures = [
-                executor.submit(self.get_input("task"), (i, element, node, self))
-                for i, element in enumerate(self.get_input("array"))
-            ]
+        )
+        futures = [
+            thread_pool_executor.submit(
+                self.get_input("task"), (i, element, node, self)
+            )
+            for i, element in enumerate(self.get_input("array"))
+        ]
 
-            for future in concurrent.futures.as_completed(futures):
-                index, element = future.result()
-                self.log(f'Processed "{element}" element with index "{index}".')
-                results[index] = element
+        for future in concurrent.futures.as_completed(futures):
+            index, element = future.result()
+            self.log(f'Processed "{element}" element with index "{index}".')
+            results[index] = element
 
         results = dict(sorted(results.items()))
         self.set_output("results", list(results.values()))
@@ -2251,6 +2315,68 @@ def _task_multiprocess(args: Sequence) -> tuple[int, Any]:
     sub_graph.process()
 
     return i, sub_graph.get_output("output")
+
+
+class ProcessPoolExecutorManager:
+    """
+    Define a singleton class managing our
+    :class:`concurrent.futures.ProcessPoolExecutor` class instance.
+
+    Attributes
+    ----------
+    -   :attr:`~colour.utilities.ProcessPoolExecutorManager.ProcessPoolExecutor`
+
+    Methods
+    -------
+    -   :meth:`~colour.utilities.ProcessPoolExecutorManager.get_executor`
+    -   :meth:`~colour.utilities.ProcessPoolExecutorManager.shutdown_executor`
+    """
+
+    ProcessPoolExecutor: concurrent.futures.ProcessPoolExecutor | None = None
+
+    @staticmethod
+    def get_executor(
+        max_workers: int | None = None,
+    ) -> concurrent.futures.ProcessPoolExecutor:
+        """
+        Return the :class:`concurrent.futures.ProcessPoolExecutor` class instance or
+        create it if not existing.
+
+        Parameters
+        ----------
+        max_workers
+            Maximum worker count.
+
+        Returns
+        -------
+        :class:`concurrent.futures.ProcessPoolExecutor`
+
+        Notes
+        -----
+        The :class:`concurrent.futures.ProcessPoolExecutor` class instance is
+        automatically shutdown on process exit.
+        """
+
+        if ProcessPoolExecutorManager.ProcessPoolExecutor is None:
+            context = multiprocessing.get_context("spawn")
+            ProcessPoolExecutorManager.ProcessPoolExecutor = (
+                concurrent.futures.ProcessPoolExecutor(
+                    mp_context=context, max_workers=max_workers
+                )
+            )
+
+        return ProcessPoolExecutorManager.ProcessPoolExecutor
+
+    @atexit.register
+    @staticmethod
+    def shutdown_executor() -> None:
+        """
+        Shutdown the :class:`concurrent.futures.ProcessPoolExecutor` class instance.
+        """
+
+        if ProcessPoolExecutorManager.ProcessPoolExecutor is not None:
+            ProcessPoolExecutorManager.ProcessPoolExecutor.shutdown(wait=True)
+            ProcessPoolExecutorManager.ProcessPoolExecutor = None
 
 
 class ParallelForMultiprocess(ControlFlowNode):
@@ -2305,19 +2431,20 @@ class ParallelForMultiprocess(ControlFlowNode):
         self.log(f'Processing "{node}" node...')
 
         results = {}
-        context = multiprocessing.get_context("spawn")
-        with concurrent.futures.ProcessPoolExecutor(
-            mp_context=context, max_workers=self.get_input("processes")
-        ) as executor:
-            futures = [
-                executor.submit(self.get_input("task"), (i, element, node, self))
-                for i, element in enumerate(self.get_input("array"))
-            ]
+        process_pool_executor = ProcessPoolExecutorManager.get_executor(
+            max_workers=self.get_input("processes")
+        )
+        futures = [
+            process_pool_executor.submit(
+                self.get_input("task"), (i, element, node, self)
+            )
+            for i, element in enumerate(self.get_input("array"))
+        ]
 
-            for future in concurrent.futures.as_completed(futures):
-                index, element = future.result()
-                self.log(f'Processed "{element}" element with index "{index}".')
-                results[index] = element
+        for future in concurrent.futures.as_completed(futures):
+            index, element = future.result()
+            self.log(f'Processed "{element}" element with index "{index}".')
+            results[index] = element
 
         results = dict(sorted(results.items()))
         self.set_output("results", list(results.values()))
