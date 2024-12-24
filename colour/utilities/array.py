@@ -2401,7 +2401,9 @@ def centroid(a: ArrayLike) -> NDArrayInt:
 
         a_ci.append(np.sum(axis * a) // a_s)
 
-    return as_int_array(a_ci)
+    # NOTE: Cannot use `as_int_array` as presence of NaN will raise a ValueError
+    # exception.
+    return np.array(a_ci).astype(DTYPE_INT_DEFAULT)
 
 
 def fill_nan(
